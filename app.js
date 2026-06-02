@@ -296,15 +296,28 @@ function openRecipeModal(day) {
     recipesContainer.appendChild(heading);
 
     allPages.forEach(({ page, dish }) => {
-      const recipeText = appData.recipes[String(page)];
-      if (!recipeText) return;
+      const pageData = appData.recipes[String(page)];
+      if (!pageData) return;
 
       const section = document.createElement('div');
       section.className = 'recipe-section';
       section.id = `recipe-page-${page}`;
 
-      // Clean recipe text
-      const cleanText = cleanRecipeText(recipeText);
+      // Build HTML for each structured recipe on this page
+      let bodyHtml = '';
+      if (Array.isArray(pageData)) {
+        pageData.forEach(item => {
+          if (item.title) {
+            bodyHtml += `<div style="font-family:'Playfair Display',serif;font-weight:700;font-size:16px;color:var(--gold-dark);margin-top:16px;margin-bottom:8px;">${escapeHtml(item.title)}</div>`;
+          }
+          if (item.body) {
+            bodyHtml += `<div class="recipe-text" style="margin-bottom:16px;">${escapeHtml(item.body)}</div>`;
+          }
+        });
+      } else {
+        // Fallback if it's a string
+        bodyHtml = `<div class="recipe-text">${escapeHtml(pageData)}</div>`;
+      }
 
       section.innerHTML = `
         <div class="recipe-section-header" onclick="toggleRecipeSection(this)">
@@ -314,8 +327,8 @@ function openRecipeModal(day) {
             <span class="recipe-section-toggle">▾</span>
           </div>
         </div>
-        <div class="recipe-section-body">
-          <div class="recipe-text">${escapeHtml(cleanText)}</div>
+        <div class="recipe-section-body" style="padding-top:4px;">
+          ${bodyHtml}
         </div>
       `;
       recipesContainer.appendChild(section);
@@ -360,16 +373,7 @@ function escapeRegex(str) {
   return str.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
 }
 
-function cleanRecipeText(text) {
-  return text
-    // Remove page number markers at start of lines
-    .replace(/^\d+\s*\n/gm, '')
-    // Remove Roman numeral only lines
-    .replace(/^[XLCIVMD]+\s*$/gm, '')
-    // Normalize multiple blank lines
-    .replace(/\n{3,}/g, '\n\n')
-    .trim();
-}
+
 
 // ─── START ────────────────────────────────────────────────────────────────────
 loadData().catch(err => {
