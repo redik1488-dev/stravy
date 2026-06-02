@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>365 Obiadów za 5 Złotych – Lucyna C.</title>
+  <meta name="description" content="Klasyczna polska książka kucharska z 1863 roku. 365 przepisów na codzienne obiady autorstwa Lucyny C. Przeglądaj jadłospisy i przepisy na każdy dzień roku." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Inter:wght@300;400;500;600&family=Lora:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+<!-- HERO -->
+<header class="hero" id="top">
+  <div class="hero-bg"></div>
+  <div class="hero-overlay"></div>
+  <div class="hero-content">
+    <div class="hero-badge">Warszawa · 1863</div>
+    <h1 class="hero-title">
+      <span class="hero-num">365</span>
+      <span class="hero-sub">Obiadów za</span>
+      <span class="hero-price">5 Złotych</span>
+    </h1>
+    <p class="hero-author">przez <em>Lucynę C.</em></p>
+    <p class="hero-desc">Klasyczna polska książka kucharska. Codzienne jadłospisy na każdy miesiąc roku, każde danie z możliwością przejścia do oryginalnego przepisu.</p>
+    <a href="#months" class="hero-btn">Przeglądaj jadłospisy</a>
+  </div>
+  <div class="hero-scroll-indicator">
+    <span>↓</span>
+  </div>
+</header>
+
+<!-- MONTH TABS -->
+<nav class="month-nav" id="months">
+  <div class="month-nav-inner" id="monthTabs">
+    <!-- filled by JS -->
+  </div>
+</nav>
+
+<!-- MAIN CONTENT -->
+<main class="main-content" id="mainContent">
+  <!-- Days grid or recipe view -->
+  <div class="days-view" id="daysView">
+    <div class="days-header">
+      <h2 id="monthTitle" class="days-month-title"></h2>
+      <p id="monthSubtitle" class="days-month-sub"></p>
+    </div>
+    <div class="days-grid" id="daysGrid">
+      <!-- day cards filled by JS -->
+    </div>
+  </div>
+</main>
+
+<!-- RECIPE MODAL -->
+<div class="modal-overlay" id="modalOverlay">
+  <div class="modal" id="recipeModal">
+    <button class="modal-close" id="modalClose" aria-label="Zamknij">✕</button>
+    <div class="modal-header">
+      <div class="modal-badge" id="modalBadge"></div>
+      <h2 class="modal-title" id="modalTitle"></h2>
+      <div class="modal-meta" id="modalMeta"></div>
+    </div>
+    <div class="modal-body">
+      <div class="modal-day-summary" id="modalDaySummary"></div>
+      <div class="modal-recipes" id="modalRecipes"></div>
+    </div>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <p>„365 Obiadów za 5 Złotych" · Lucyna C. · Warszawa 1863</p>
+  <p class="footer-sub">Wydanie drugie poprawione i powiększone, z dodatkiem 130 obiadów postnych.</p>
+</footer>
+
+<script src="app.js"></script>
+</body>
+</html>

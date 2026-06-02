@@ -1,0 +1,7 @@
+# Source data files (not needed for the website)
+pages/
+*.txt
+parse_data.py
+.DS_Store
+__pycache__/
+*.pyc
